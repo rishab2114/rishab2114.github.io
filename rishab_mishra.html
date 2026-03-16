@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishab Mishra</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f7f4ef;
+    --bg2:      #eeeae2;
+    --bg3:      #e5e0d5;
+    --ink:      #1a1814;
+    --ink-mid:  #4a4640;
+    --ink-dim:  #8a847a;
+    --gold:     #b07d3a;
+    --gold-lt:  #c99550;
+    --accent:   #4a7c6f;
+    --line:     rgba(26,24,20,0.10);
+    --line-gold:rgba(176,125,58,0.25);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font-family:'Outfit',sans-serif; font-weight:300; overflow-x:hidden; cursor:none; }
+
+  .cursor      { position:fixed; width:7px; height:7px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform .1s; }
+  .cursor-ring { position:fixed; width:30px; height:30px; border:1.5px solid var(--gold-lt); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .2s,height .2s; opacity:.6; }
+
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:22px 64px; background:rgba(247,244,239,0.93); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { color:var(--ink-mid); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; transition:color .25s; }
+  .nav-links a:hover { color:var(--gold); }
+
+  .hero { min-height:100vh; display:flex; align-items:center; padding:120px 64px 80px; position:relative; overflow:hidden; }
+  .hero-watermark { position:absolute; right:-40px; top:50%; transform:translateY(-50%); font-family:'Cormorant Garamond',serif; font-size:clamp(160px,22vw,320px); font-weight:700; color:transparent; -webkit-text-stroke:1px rgba(176,125,58,0.07); pointer-events:none; user-select:none; white-space:nowrap; line-height:1; }
+  .hero-inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:80px; width:100%; align-items:center; position:relative; z-index:2; }
+  .hero-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:22px; display:flex; align-items:center; gap:14px; }
+  .hero-eyebrow::before { content:''; width:32px; height:1px; background:var(--gold); }
+  .hero-name { font-family:'Cormorant Garamond',serif; font-size:clamp(58px,7.5vw,108px); font-weight:300; line-height:.92; letter-spacing:-2px; color:var(--ink); }
+  .hero-name em { font-style:italic; color:var(--gold); }
+  .hero-right { display:flex; flex-direction:column; gap:28px; }
+  .hero-desc { font-size:15.5px; line-height:1.85; color:var(--ink-mid); max-width:400px; font-weight:300; }
+  .hero-desc strong { color:var(--ink); font-weight:500; }
+  .hero-tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { font-size:11px; padding:5px 14px; border:1px solid var(--line-gold); color:var(--gold); background:rgba(176,125,58,0.06); font-weight:500; letter-spacing:.5px; transition:background .2s; }
+  .tag:hover { background:rgba(176,125,58,0.12); }
+  .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; font-weight:600; transition:all .25s; font-family:'Outfit',sans-serif; }
+  .btn-primary { background:var(--ink); color:var(--bg); }
+  .btn-primary:hover { background:var(--gold); transform:translateY(-2px); }
+  .btn-ghost { border:1.5px solid var(--line-gold); color:var(--gold); }
+  .btn-ghost:hover { background:var(--gold); color:var(--bg); }
+
+  .divider { width:100%; height:1px; background:var(--line); }
+
+  section { padding:96px 64px; }
+  .sec-label { font-size:9.5px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:48px; display:flex; align-items:center; gap:14px; }
+  .sec-label::after { content:''; flex:0 0 48px; height:1px; background:var(--gold-lt); opacity:.5; }
+  .sec-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4.5vw,58px); font-weight:300; line-height:1.1; margin-bottom:52px; }
+  .sec-title em { font-style:italic; color:var(--gold); }
+
+  .about-cols { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+  .about-body { font-size:15.5px; line-height:1.9; color:var(--ink-mid); }
+  .about-body p+p { margin-top:20px; }
+  .about-body strong { color:var(--ink); font-weight:500; }
+  .path-list { display:flex; flex-direction:column; gap:10px; margin-top:28px; }
+  .path-item { display:flex; align-items:center; gap:12px; font-size:13px; color:var(--ink-mid); }
+  .path-item::before { content:''; width:5px; height:5px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+  .traits { display:flex; flex-direction:column; gap:20px; }
+  .trait { padding:26px 28px; background:#fff; border:1px solid var(--line); border-left:3px solid var(--gold); transition:box-shadow .25s,transform .25s; }
+  .trait:hover { box-shadow:0 8px 32px rgba(0,0,0,0.06); transform:translateX(4px); }
+  .trait-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--ink); margin-bottom:8px; }
+  .trait-body { font-size:13px; line-height:1.7; color:var(--ink-mid); }
+
+  .edu-card { background:#fff; border:1px solid var(--line); padding:44px 48px; margin-bottom:24px; transition:box-shadow .25s,transform .25s; position:relative; overflow:hidden; }
+  .edu-card:hover { box-shadow:0 12px 40px rgba(0,0,0,0.07); transform:translateY(-3px); }
+  .edu-card::after { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(176,125,58,0.06) 0%,transparent 70%); }
+  .edu-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+  .edu-uni { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--ink); }
+  .edu-degree { font-size:13px; color:var(--gold); font-weight:500; margin-top:5px; letter-spacing:.3px; }
+  .edu-date { font-family:'DM Mono',monospace; font-size:11.5px; color:var(--ink-dim); white-space:nowrap; }
+  .modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-top:32px; }
+  .module-card { background:var(--bg); border:1px solid var(--line); padding:20px 22px; transition:border-color .2s, box-shadow .2s; }
+  .module-card:hover { border-color:var(--line-gold); box-shadow:0 4px 16px rgba(0,0,0,0.05); }
+  .module-title { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .module-desc { font-size:12.5px; line-height:1.6; color:var(--ink-dim); }
+
+  .timeline { position:relative; padding-left:36px; }
+  .timeline::before { content:''; position:absolute; left:0; top:10px; bottom:10px; width:1px; background:linear-gradient(to bottom,var(--gold-lt),transparent); opacity:.4; }
+  .exp-item { margin-bottom:52px; position:relative; }
+  .exp-item::before { content:''; position:absolute; left:-40px; top:9px; width:9px; height:9px; background:var(--gold); border-radius:50%; box-shadow:0 0 0 3px rgba(176,125,58,0.15); }
+  .exp-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .exp-role { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; color:var(--ink); }
+  .exp-org { font-size:12.5px; color:var(--gold); font-weight:500; margin-top:3px; letter-spacing:.3px; }
+  .exp-date { font-family:'DM Mono',monospace; font-size:11px; color:var(--ink-dim); white-space:nowrap; }
+  .exp-points { list-style:none; display:flex; flex-direction:column; gap:9px; margin-top:14px; }
+  .exp-points li { font-size:13.5px; line-height:1.7; color:var(--ink-mid); padding-left:18px; position:relative; }
+  .exp-points li::before { content:'›'; position:absolute; left:0; color:var(--gold); font-size:15px; }
+
+  .skills-wrap { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .skill-box { background:#fff; border:1px solid var(--line); padding:28px 30px; transition:box-shadow .25s,transform .25s; }
+  .skill-box:hover { box-shadow:0 8px 28px rgba(0,0,0,0.06); transform:translateY(-3px); }
+  .skill-cat { font-size:9.5px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:7px; }
+  .s-tag { font-size:11.5px; padding:4px 11px; border:1px solid var(--line-gold); color:var(--ink-mid); background:rgba(176,125,58,0.04); font-family:'DM Mono',monospace; transition:all .2s; }
+  .s-tag:hover { background:rgba(176,125,58,0.10); color:var(--gold); border-color:var(--gold-lt); }
+
+  .project-wrap { background:#fff; border:1px solid var(--line); display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:center; padding:52px; position:relative; overflow:hidden; transition:box-shadow .25s; }
+  .project-wrap:hover { box-shadow:0 16px 48px rgba(0,0,0,0.07); }
+  .project-wrap::before { content:''; position:absolute; top:-80px; right:-80px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle,rgba(176,125,58,0.07) 0%,transparent 70%); }
+  .proj-label { font-size:9.5px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px; }
+  .proj-name { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; color:var(--ink); line-height:1.05; margin-bottom:20px; }
+  .proj-name em { font-style:italic; color:var(--gold); }
+  .proj-desc { font-size:14px; line-height:1.8; color:var(--ink-mid); margin-bottom:28px; }
+  .pillars { display:flex; flex-direction:column; gap:14px; }
+  .pillar { display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--bg2); border:1px solid var(--line); transition:background .2s; }
+  .pillar:hover { background:var(--bg3); }
+  .pillar-letter { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:700; color:var(--gold); width:28px; flex-shrink:0; }
+  .pillar-info strong { display:block; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink); margin-bottom:3px; }
+  .pillar-info span { font-size:12.5px; color:var(--ink-mid); line-height:1.5; }
+
+  .contact-inner { text-align:center; max-width:600px; margin:0 auto; }
+  .contact-inner .sec-label { justify-content:center; }
+  .contact-inner .sec-label::after { display:none; }
+  .contact-sub { font-size:15px; line-height:1.85; color:var(--ink-mid); margin-bottom:44px; }
+  .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:52px; text-align:left; }
+  .contact-cell { background:#fff; padding:28px 30px; transition:background .2s; }
+  .contact-cell:hover { background:var(--bg2); }
+  .c-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px; }
+  .c-value { font-family:'DM Mono',monospace; font-size:13px; color:var(--ink); }
+
+  footer { padding:26px 64px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; background:var(--bg2); }
+  footer span { font-size:11px; color:var(--ink-dim); letter-spacing:.5px; }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .75s ease,transform .75s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
+
+  @media(max-width:900px){
+    nav { padding:18px 24px; }
+    .nav-links { display:none; }
+    section { padding:64px 24px; }
+    .hero { padding:100px 24px 60px; }
+    .hero-inner,.about-cols,.project-wrap { grid-template-columns:1fr; gap:40px; }
+    .skills-wrap { grid-template-columns:1fr 1fr; }
+    .contact-grid { grid-template-columns:1fr; }
+    footer { padding:20px 24px; flex-direction:column; gap:8px; text-align:center; }
+    .edu-card { padding:28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <div class="nav-logo">RM</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#project">Inspire</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-watermark">MISHRA</div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Economics · Strategy · Entrepreneurship</div>
+      <h1 class="hero-name">Rishab<br><em>Mishra</em></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        Economics undergraduate at <strong>Nanyang Technological University</strong>, combining quantitative rigour with a genuine interest in strategy, markets, and technology. I'm drawn to work that shapes direction — not just executes tasks.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Equity Research</span>
+        <span class="tag">Consulting</span>
+        <span class="tag">Entrepreneurship</span>
+        <span class="tag">APAC Markets</span>
+        <span class="tag">AI & Business</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn btn-ghost">View Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">01 — About</div>
+  <div class="about-cols">
+    <div class="reveal">
+      <h2 class="sec-title">Built to<br><em>shape direction</em></h2>
+      <div class="about-body">
+        <p>I study Economics with a minor in Artificial Intelligence and Business at Nanyang Technological University, Singapore. My academic foundation blends economic theory with quantitative methods and an applied interest in technology — a combination I draw on across research, markets, and strategy work.</p>
+        <p>Outside the classroom, I am building the <strong>Inspire Initiative</strong>, a career development platform designed to centralise opportunities, mentorship, and guidance for university students across APAC. I also serve as Corporate Liaison Officer at the Nanyang Technological University Students' Union, where I manage relationships with over 50 corporate partners and lead sponsorship negotiations for major student events.</p>
+        <p>My longer-term direction points toward <strong>strategy consulting, corporate strategy, or entrepreneurship</strong> — environments where rigorous thinking meets leadership and tangible outcomes.</p>
+      </div>
+      <div class="path-list">
+        <div class="path-item">Strategy Consulting</div>
+        <div class="path-item">Corporate Strategy & Business Transformation</div>
+        <div class="path-item">Public Policy & Economic Advisory</div>
+        <div class="path-item">Venture Building & Entrepreneurship</div>
+      </div>
+    </div>
+    <div class="traits reveal">
+      <div class="trait">
+        <div class="trait-title">Strategic Thinker</div>
+        <div class="trait-body">I approach every opportunity through the lens of leverage and positioning — whether structuring a sponsorship deal, analysing a market entry, or evaluating a product decision. I think about what the exchange should look like, not just whether to accept it.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-title">High Agency</div>
+        <div class="trait-body">I initiate, negotiate, and push for clarity rather than waiting for things to happen. That orientation shows up consistently — in how I approach student initiatives, research projects, and entrepreneurship.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-title">Driven by Outcomes</div>
+        <div class="trait-body">Competitive by nature and practical in execution. I care about performance and positioning, and work best in environments that hold both to a high standard.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-label">02 — Education</div>
+  <h2 class="sec-title">Academic<br><em>Foundation</em></h2>
+
+  <div class="edu-card reveal">
+    <div class="edu-top">
+      <div>
+        <div class="edu-uni">Nanyang Technological University</div>
+        <div class="edu-degree">Bachelor of Social Sciences (Economics) · Minor in Artificial Intelligence & Business · Singapore</div>
+      </div>
+      <div class="edu-date">Jan 2024 — Present</div>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-title">Microeconomics & Macroeconomics</div>
+        <div class="module-desc">Applied economic models to analyse household, firm, and government decision-making across micro and macro environments.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">Econometrics</div>
+        <div class="module-desc">Statistical modelling and regression analysis using STATA to draw empirical conclusions from real economic data.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">International Business Environment</div>
+        <div class="module-desc">Authored a research paper on Trump's 2025 tariffs and their macroeconomic impact on Vietnam. Also presented an independent strategic analysis on global firm expansion.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">Negotiations & Business Strategy</div>
+        <div class="module-desc">Practical frameworks for deal structuring, competitive positioning, and stakeholder management in professional and simulated business contexts.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">Introduction to Computational Thinking</div>
+        <div class="module-desc">Algorithmic problem-solving using Python — covering data types, control structures, and logic-based design thinking.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">Academic Research Module</div>
+        <div class="module-desc">Co-authored a paper examining the relationship between AI tool usage and student academic performance — combining survey design, data analysis, and academic writing.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">Economics of Corporate Finance</div>
+        <div class="module-desc">Bond valuation, equity pricing models, capital structure theory, and the financial decision-making frameworks used by firms.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-title">AI in Advertising & Marketing</div>
+        <div class="module-desc">Analysed how artificial intelligence is reshaping consumer targeting, marketing strategy, and engagement models across industries.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div class="edu-top">
+      <div>
+        <div class="edu-uni">University of Warwick</div>
+        <div class="edu-degree">Higher Education Certificate · Diploma in Economics, Politics & International Studies · United Kingdom</div>
+      </div>
+      <div class="edu-date">Jan 2022 — Dec 2023</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--bg2);">
+  <div class="sec-label">03 — Experience</div>
+  <h2 class="sec-title">Where I've<br><em>operated</em></h2>
+  <div class="timeline reveal">
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Founder & Chief Executive Officer</div>
+          <div class="exp-org">Inspire Initiative · Singapore</div>
+        </div>
+        <div class="exp-date">Oct 2025 — Present</div>
+      </div>
+      <ul class="exp-points">
+        <li>Founded a career development platform to centralise opportunities, mentorship, and skills resources for university students across APAC, addressing fragmentation in how students access career guidance</li>
+        <li>Designed the product architecture around a Read → Learn → Act framework, reducing information friction and enabling students to move from awareness to action</li>
+        <li>Building automated career guidance workflows and structured access to senior industry professionals as core platform features</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Corporate Liaison Officer</div>
+          <div class="exp-org">Nanyang Technological University Students' Union</div>
+        </div>
+        <div class="exp-date">Feb 2026 — Present</div>
+      </div>
+      <ul class="exp-points">
+        <li>Manage relationships with over 50 corporate partners to secure sponsorships for Nanyang Technological University student events and major campus programmes</li>
+        <li>Lead sponsorship negotiations, structuring agreements that create value for both student organisers and industry partners</li>
+        <li>Coordinate with external stakeholders and dignitaries in support of large-scale student-led initiatives, including Nanyang Technological University Students' Union Confluence</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Independent Equity Trader & Analyst</div>
+          <div class="exp-org">Self-Directed</div>
+        </div>
+        <div class="exp-date">Jan 2021 — Present</div>
+      </div>
+      <ul class="exp-points">
+        <li>Conduct equity research on mid-cap companies, analysing financial statements, sector trends, and macroeconomic indicators to guide investment decisions</li>
+        <li>Manage personal investment portfolios applying a disciplined, research-led approach to capital allocation across market cycles</li>
+        <li>Utilise tools including Reuters, Excel, and primary financial data to evaluate and track opportunities</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Student Ambassador</div>
+          <div class="exp-org">School of Social Sciences, Nanyang Technological University</div>
+        </div>
+        <div class="exp-date">Aug 2024 — Jan 2025</div>
+      </div>
+      <ul class="exp-points">
+        <li>Represented the School of Social Sciences to over 100 prospective students at outreach and admissions events</li>
+        <li>Communicated the school's academic programmes, culture, and opportunities to strengthen institutional visibility among incoming candidates</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label">04 — Skills</div>
+  <h2 class="sec-title">Capabilities &<br><em>Toolkit</em></h2>
+  <div class="skills-wrap reveal">
+    <div class="skill-box">
+      <div class="skill-cat">Economics & Finance</div>
+      <div class="skill-tags">
+        <span class="s-tag">Microeconomics</span>
+        <span class="s-tag">Macroeconomics</span>
+        <span class="s-tag">Econometrics</span>
+        <span class="s-tag">Equity Research</span>
+        <span class="s-tag">Financial Modelling</span>
+        <span class="s-tag">Corporate Finance</span>
+        <span class="s-tag">Asset Management</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-cat">Strategy & Consulting</div>
+      <div class="skill-tags">
+        <span class="s-tag">PESTLE Analysis</span>
+        <span class="s-tag">Porter's Diamond</span>
+        <span class="s-tag">Comparative Advantage</span>
+        <span class="s-tag">Consulting Frameworks</span>
+        <span class="s-tag">Market Analysis</span>
+        <span class="s-tag">Negotiations</span>
+        <span class="s-tag">Strategic Planning</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-cat">Technology & Data</div>
+      <div class="skill-tags">
+        <span class="s-tag">Python</span>
+        <span class="s-tag">STATA</span>
+        <span class="s-tag">Excel</span>
+        <span class="s-tag">Data Analytics</span>
+        <span class="s-tag">Regression Analysis</span>
+        <span class="s-tag">Computational Thinking</span>
+        <span class="s-tag">AI Applications</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-cat">Research & Communication</div>
+      <div class="skill-tags">
+        <span class="s-tag">Academic Research</span>
+        <span class="s-tag">Policy Analysis</span>
+        <span class="s-tag">Business Writing</span>
+        <span class="s-tag">Stakeholder Presentations</span>
+        <span class="s-tag">Trade & Global Markets</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-cat">Leadership & Operations</div>
+      <div class="skill-tags">
+        <span class="s-tag">Stakeholder Management</span>
+        <span class="s-tag">Sponsorship Negotiations</span>
+        <span class="s-tag">Corporate Partnerships</span>
+        <span class="s-tag">Event Coordination</span>
+        <span class="s-tag">Community Engagement</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-cat">Additional</div>
+      <div class="skill-tags">
+        <span class="s-tag">English — Fluent</span>
+        <span class="s-tag">Hindi — Native</span>
+        <span class="s-tag">Reuters Terminal</span>
+        <span class="s-tag">Int'l Award for Young People (Bronze)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECT -->
+<section id="project" style="background:var(--bg2);">
+  <div class="sec-label">05 — Initiative</div>
+  <h2 class="sec-title">The <em>Inspire</em><br>Initiative</h2>
+  <div class="project-wrap reveal">
+    <div>
+      <div class="proj-label">Career Platform · Singapore · APAC Expansion</div>
+      <div class="proj-name">Closing the gap between<br><em>students and opportunity.</em></div>
+      <p class="proj-desc">Most students don't lack ambition — they lack access. Career guidance is fragmented across career fairs, LinkedIn, professors, and hearsay. Inspire is built to fix that. It's a centralised student career development platform that brings together curated content, structured mentorship, and matched opportunities in one place.</p>
+      <p class="proj-desc" style="margin-top:14px;">The platform is built on a simple insight: students need to first understand a field before they can navigate it, then build the skills and relationships to compete in it, and finally act on real opportunities with confidence. That logic drives everything — from how content is surfaced to how mentors are matched to how opportunities are recommended. Currently live in Singapore, with APAC expansion underway.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Learn More</a>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-letter">R</div>
+        <div class="pillar-info">
+          <strong>Read</strong>
+          <span>Curated, field-specific career content and industry insights tailored to each student's goals</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">L</div>
+        <div class="pillar-info">
+          <strong>Learn</strong>
+          <span>Three-tier mentorship — peer, industry professional, and C-suite — plus AI-powered personalised roadmaps</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">A</div>
+        <div class="pillar-info">
+          <strong>Act</strong>
+          <span>Matched internships, hackathons, and live opportunities aligned to the student's profile and ambitions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="sec-label" style="justify-content:center;">06 — Contact</div>
+    <h2 class="sec-title" style="margin-bottom:18px;">Let's<br><em>connect</em></h2>
+    <p class="contact-sub">Open to conversations about strategy, consulting, investment, and anything being built at the intersection of economics and technology. Always happy to connect.</p>
+    <a href="mailto:rishab2114@gmail.com" class="btn btn-primary">Send an Email</a>
+    <a href="https://www.linkedin.com/in/rishab-mishra-57b824252" target="_blank" class="btn btn-ghost" style="margin-left:12px;">LinkedIn ↗</a>
+    <div class="contact-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="contact-cell">
+        <div class="c-label">Email</div>
+        <div class="c-value">rishab2114@gmail.com</div>
+      </div>
+      <div class="contact-cell">
+        <div class="c-label">Phone</div>
+        <div class="c-value">+65 8453 0995</div>
+      </div>
+      <div class="contact-cell">
+        <div class="c-label">Based in</div>
+        <div class="c-value">Singapore</div>
+      </div>
+      <div class="contact-cell">
+        <div class="c-label">LinkedIn</div>
+        <div class="c-value"><a href="https://www.linkedin.com/in/rishab-mishra-57b824252" target="_blank" style="color:var(--gold);text-decoration:none;">View Profile ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Rishab Mishra</span>
+  <span>Nanyang Technological University · Economics</span>
+</footer>
+
+<script>
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('ring');
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px';
+    ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px';
+  });
+  document.querySelectorAll('a,button,.trait,.edu-card,.skill-box,.pillar').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ ring.style.width='44px'; ring.style.height='44px'; cur.style.transform='translate(-50%,-50%) scale(1.6)'; });
+    el.addEventListener('mouseleave',()=>{ ring.style.width='30px'; ring.style.height='30px'; cur.style.transform='translate(-50%,-50%) scale(1)'; });
+  });
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'),i*60); obs.unobserve(e.target); } });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
