@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rishab Mishra</title>
+<meta name="description" content="Rishab Mishra is an Economics undergraduate at NTU working across strategy, markets, product prototyping, and venture building.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -156,6 +157,7 @@
   .proj-point { font-size:12.5px; line-height:1.65; color:var(--ink-mid); padding-left:16px; position:relative; }
   .proj-point::before { content:'›'; position:absolute; left:0; color:var(--gold); }
   .proj-card-footer { margin-top:auto; padding-top:4px; }
+  .proj-card:last-child:nth-child(odd) { grid-column:1 / -1; }
 
   @media(max-width:900px){
     nav { padding:18px 24px; }
@@ -165,6 +167,7 @@
     .hero-inner,.about-cols,.project-wrap { grid-template-columns:1fr; gap:40px; }
     .skills-wrap { grid-template-columns:1fr 1fr; }
     .projects-grid { grid-template-columns:1fr; }
+    .proj-card:last-child:nth-child(odd) { grid-column:auto; }
     .contact-layout { grid-template-columns:1fr; }
     .form-row { grid-template-columns:1fr; }
     .contact-grid { grid-template-columns:1fr; }
@@ -197,24 +200,23 @@
   <div class="hero-watermark">MISHRA</div>
   <div class="hero-inner" >
     <div>
-      <div class="hero-eyebrow">Economics · Strategy · Entrepreneurship</div>
+      <div class="hero-eyebrow">Economics · Product Strategy · Venture Building</div>
       <h1 class="hero-name">Rishab<br><em>Mishra</em></h1>
-    </div>
     </div>
     <div class="hero-right">
       <p class="hero-desc">
-        Economics undergraduate at <strong>Nanyang Technological University</strong>, combining quantitative rigour with a genuine interest in strategy, markets, and technology. I'm drawn to work that shapes direction — not just executes tasks.
+        Economics undergraduate at <strong>Nanyang Technological University</strong> building evidence-led products across markets, hiring, healthcare, and student careers. My work connects research, strategy, and practical execution.
       </p>
       <div class="hero-tags">
         <span class="tag">Equity Research</span>
-        <span class="tag">Consulting</span>
-        <span class="tag">Entrepreneurship</span>
-        <span class="tag">APAC Markets</span>
+        <span class="tag">Strategy & Operations</span>
+        <span class="tag">Product Prototyping</span>
         <span class="tag">AI & Business</span>
+        <span class="tag">Venture Building</span>
       </div>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Get in Touch</a>
-        <a href="#experience" class="btn btn-ghost">View Work</a>
+        <a href="#projects" class="btn btn-ghost">View Work</a>
       </div>
     </div>
   </div>
@@ -230,7 +232,7 @@
       <h2 class="sec-title">Built to<br><em>shape direction</em></h2>
       <div class="about-body">
         <p>I study Economics with a minor in Artificial Intelligence and Business at Nanyang Technological University, Singapore. My academic foundation blends economic theory with quantitative methods and an applied interest in technology — a combination I draw on across research, markets, and strategy work.</p>
-        <p>Outside the classroom, I am building the <strong>Inspire Initiative</strong>, a career development platform designed to centralise opportunities, mentorship, and guidance for university students across APAC. I also serve as Corporate Liaison Officer at the Nanyang Technological University Students' Union, where I manage relationships with over 50 corporate partners and lead sponsorship negotiations for major student events.</p>
+        <p>Outside the classroom, I am building the <strong>Inspire Initiative</strong> and developing practical prototypes across workforce planning, family medication coordination, and market research. I also serve as Corporate Liaison Officer at the Nanyang Technological University Students' Union, where I manage relationships with over 50 corporate partners and lead sponsorship negotiations for major student events.</p>
         <p>My longer-term direction points toward <strong>strategy consulting, corporate strategy, or entrepreneurship</strong> — environments where rigorous thinking meets leadership and tangible outcomes.</p>
       </div>
       <div class="path-list">
@@ -247,7 +249,7 @@
       </div>
       <div class="trait">
         <div class="trait-title">High Agency</div>
-        <div class="trait-body">I initiate, negotiate, and push for clarity rather than waiting for things to happen. That orientation shows up consistently — in how I approach student initiatives, research projects, and entrepreneurship.</div>
+        <div class="trait-body">I initiate, negotiate, and push for clarity rather than waiting for things to happen. That orientation shows up in how I approach student initiatives, product prototypes, research, and entrepreneurship.</div>
       </div>
       <div class="trait">
         <div class="trait-title">Driven by Outcomes</div>
@@ -326,6 +328,20 @@
   <div class="sec-label">03 — Experience</div>
   <h2 class="sec-title">Where I've<br><em>operated</em></h2>
   <div class="timeline reveal">
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Digital Transformation Intern</div>
+          <div class="exp-org">Singapore Airlines · IT Division, Digital Acceleration Unit</div>
+        </div>
+        <div class="exp-date">Aug 2026 — Dec 2026</div>
+      </div>
+      <ul class="exp-points">
+        <li>Support digital transformation and GenAI adoption initiatives by translating technical capabilities into clear user pain points, value propositions, and adoption-focused communications</li>
+        <li>Coordinate with cross-functional stakeholders on change-management initiatives, shaping user journeys, engagement materials, and implementation support for internal digital tools</li>
+      </ul>
+    </div>
 
     <div class="exp-item">
       <div class="exp-top">
@@ -421,6 +437,7 @@
         <span class="s-tag">Financial Modelling</span>
         <span class="s-tag">Corporate Finance</span>
         <span class="s-tag">Asset Management</span>
+        <span class="s-tag">Game Theory</span>
       </div>
     </div>
     <div class="skill-box">
@@ -433,6 +450,7 @@
         <span class="s-tag">Market Analysis</span>
         <span class="s-tag">Negotiations</span>
         <span class="s-tag">Strategic Planning</span>
+        <span class="s-tag">Requirements & UAT</span>
       </div>
     </div>
     <div class="skill-box">
@@ -445,6 +463,8 @@
         <span class="s-tag">Regression Analysis</span>
         <span class="s-tag">Computational Thinking</span>
         <span class="s-tag">AI Applications</span>
+        <span class="s-tag">React & TypeScript</span>
+        <span class="s-tag">Product Prototyping</span>
       </div>
     </div>
     <div class="skill-box">
@@ -455,6 +475,7 @@
         <span class="s-tag">Business Writing</span>
         <span class="s-tag">Stakeholder Presentations</span>
         <span class="s-tag">Trade & Global Markets</span>
+        <span class="s-tag">Experimental Design</span>
       </div>
     </div>
     <div class="skill-box">
@@ -484,31 +505,31 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="sec-label">05 — Projects</div>
-  <h2 class="sec-title">Built &<br><em>Shipped</em></h2>
+  <h2 class="sec-title">Built &<br><em>validated</em></h2>
   <div class="projects-grid reveal">
 
     <div class="proj-card">
       <div class="proj-card-header">
         <div class="proj-card-num">01</div>
         <div class="proj-card-stack">
-          <span class="s-tag">Python</span>
-          <span class="s-tag">Financial Analytics</span>
-          <span class="s-tag">Statistical Modelling</span>
+          <span class="s-tag">React / TypeScript</span>
+          <span class="s-tag">D1 / R2</span>
+          <span class="s-tag">Workforce Planning</span>
         </div>
       </div>
       <div>
-        <div class="proj-card-type">Market Intelligence · Indian Equities</div>
-        <div class="proj-card-name">Quantbot</div>
-        <p class="proj-card-desc">Institutional-grade market intelligence platform for Indian equities. Ingests live data from the Nifty universe, runs multi-stage analytics — lead-lag, regime detection, network graphs — and surfaces structural patterns that aren't visible from price charts alone.</p>
+        <div class="proj-card-type">Evidence-first hiring · Private prototype</div>
+        <div class="proj-card-name">TeamFit</div>
+        <p class="proj-card-desc">A private decision-support workspace that turns candidate résumés, projects, public GitHub evidence, role criteria, and approved budgets into clear, reviewable hiring options.</p>
         <div class="proj-points-list" style="margin-top:14px;">
-          <div class="proj-point">Dollar Index (DX-Y) identified as top lead driver across 9/11 Indian assets via CCF sweep</div>
-          <div class="proj-point">GMM regime detection classifies market state: CRISIS / RISK_OFF / RISK_ON / COMPLACENCY</div>
-          <div class="proj-point">Minimum spanning tree (Mantegna distance) maps contagion channels; MST hubs: BANKNIFTY, NIFTY, TCS</div>
-          <div class="proj-point">Correlation anomaly detection flags ICICI Bank / Sun Pharma breakdown (z = −3.29, May 2026)</div>
+          <div class="proj-point">Connects source-traceable candidate evidence to department and role comparisons</div>
+          <div class="proj-point">Generates budget-constrained hiring scenarios with salary bands, approved vacancies, and visible trade-offs</div>
+          <div class="proj-point">Keeps recruiters in control through manual review, corrections, approvals, and audit-aware snapshots</div>
+          <div class="proj-point">Validated with 21 tests plus passing type-check, production build, desktop, and mobile checks</div>
         </div>
       </div>
       <div class="proj-card-footer">
-        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Personal Project · Private Repo</span>
+        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Private MVP · Human review required</span>
       </div>
     </div>
 
@@ -516,24 +537,99 @@
       <div class="proj-card-header">
         <div class="proj-card-num">02</div>
         <div class="proj-card-stack">
+          <span class="s-tag">Product Systems</span>
+          <span class="s-tag">Safety Logic</span>
+          <span class="s-tag">Hardware Concept</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-card-type">Family medication coordination · Simulator</div>
+        <div class="proj-card-name">Medidose</div>
+        <p class="proj-card-desc">An affordable family medication-management concept built around manually prepared sealed doses, individually locked compartments, clear household roles, and honest event reporting.</p>
+        <div class="proj-points-list" style="margin-top:14px;">
+          <div class="proj-point">Installable web prototype covers Today, Schedule, Refill, Activity, and Device workflows</div>
+          <div class="proj-point">Separates scheduled, unlocked, open, removed, collected, and reported-taken states</div>
+          <div class="proj-point">Designed a modular eight-compartment industrial concept and one-compartment physical validation plan</div>
+          <div class="proj-point">Nine model tests, TypeScript checks, production build, and API integration checks passed</div>
+        </div>
+      </div>
+      <div class="proj-card-footer">
+        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Private simulator · No connected device yet</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-num">03</div>
+        <div class="proj-card-stack">
+          <span class="s-tag">Python</span>
+          <span class="s-tag">Market Analytics</span>
+          <span class="s-tag">Validation</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-card-type">Market intelligence · Indian equities</div>
+        <div class="proj-card-name">Quantbot</div>
+        <p class="proj-card-desc">A research system for Indian equity market structure and scheduled evidence collection, combining multi-stage analytics with explicit validation gates and immutable publication inputs.</p>
+        <div class="proj-points-list" style="margin-top:14px;">
+          <div class="proj-point">Runs lead-lag, regime detection, network, and anomaly analysis across market data</div>
+          <div class="proj-point">Separates successful publications from eligible on-time validation evidence</div>
+          <div class="proj-point">Fails closed on invalid or legacy result inputs and records publication provenance</div>
+          <div class="proj-point">Focused reader-policy and publication verification suite passed 48 tests</div>
+        </div>
+      </div>
+      <div class="proj-card-footer">
+        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Research project · Private repo · Validation ongoing</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-num">04</div>
+        <div class="proj-card-stack">
+          <span class="s-tag">Python</span>
+          <span class="s-tag">Game Theory</span>
+          <span class="s-tag">Policy Screening</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-card-type">Experimental economics · Research benchmark</div>
+        <div class="proj-card-name">MarketTwin</div>
+        <p class="proj-card-desc">A controlled research environment for testing whether AI pricing policies exhibit strategic coordination under repeated interaction, using structural economic benchmarks and falsifiable intervention tests.</p>
+        <div class="proj-points-list" style="margin-top:14px;">
+          <div class="proj-point">Reproduces established Nash and joint-pricing benchmarks and uses a Nash-centred action grid</div>
+          <div class="proj-point">Tests coordination through forced-deviation replay, punishment, recovery, deterrence, and a matched myopic control</div>
+          <div class="proj-point">Keeps failed, malformed, refused, off-grid, and unmetered model calls visible as void attempts</div>
+          <div class="proj-point">Defines a live-market validation ladder from historical shock replay to prospective shadow monitoring</div>
+        </div>
+      </div>
+      <div class="proj-card-footer">
+        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Research project · Simulation validated · Live-market layer in development</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-num">05</div>
+        <div class="proj-card-stack">
           <span class="s-tag">HTML/CSS/JS</span>
           <span class="s-tag">GPA Logic</span>
           <span class="s-tag">NTU</span>
         </div>
       </div>
       <div>
-        <div class="proj-card-type">Web Tool · NTU Students</div>
+        <div class="proj-card-type">Web tool · NTU students</div>
         <div class="proj-card-name">NTU GPA Calculator</div>
-        <p class="proj-card-desc">A single-page browser tool that implements NTU's exact letter-grade-to-grade-point mapping and credit-weighted GPA formula. Built for students who want to track their academic standing and plan ahead — no app install, no sign-in, runs entirely in the browser.</p>
+        <p class="proj-card-desc">A single-page browser tool that implements NTU's letter-grade-to-grade-point mapping and credit-weighted GPA formula. It helps students track academic standing and model future outcomes without an account or app install.</p>
         <div class="proj-points-list" style="margin-top:14px;">
-          <div class="proj-point">Full NTU grading system: letter grades mapped to grade points, weighted by Academic Units per module</div>
-          <div class="proj-point">Semester-by-semester breakdown with running CGPA recalculated on every input change</div>
-          <div class="proj-point">Grade simulation mode — model target CGPA outcomes across different course-load scenarios</div>
-          <div class="proj-point">PDF transcript import parses grade data automatically via PDF.js — no manual entry needed</div>
+          <div class="proj-point">Maps letter grades to grade points and weights results by Academic Units</div>
+          <div class="proj-point">Shows semester breakdowns and recalculates running CGPA as inputs change</div>
+          <div class="proj-point">Includes grade simulation for target-CGPA planning across future course loads</div>
+          <div class="proj-point">Supports client-side PDF transcript parsing through PDF.js</div>
         </div>
       </div>
       <div class="proj-card-footer">
-        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Personal Project · Client-side only</span>
+        <span class="s-tag" style="font-size:11px;padding:5px 13px;">Personal project · Client-side only</span>
       </div>
     </div>
 
@@ -551,7 +647,7 @@
       <div class="proj-label">Career Platform · Singapore · APAC Expansion</div>
       <div class="proj-name">Closing the gap between<br><em>students and opportunity.</em></div>
       <p class="proj-desc">Most students don't lack ambition — they lack access. Career guidance is fragmented across career fairs, LinkedIn, professors, and hearsay. Inspire is built to fix that. It's a centralised student career development platform that brings together curated content, structured mentorship, and matched opportunities in one place.</p>
-      <p class="proj-desc" style="margin-top:14px;">The platform is built on a simple insight: students need to first understand a field before they can navigate it, then build the skills and relationships to compete in it, and finally act on real opportunities with confidence. That logic drives everything — from how content is surfaced to how mentors are matched to how opportunities are recommended. Currently live in Singapore, with APAC expansion underway.</p>
+      <p class="proj-desc" style="margin-top:14px;">The platform is built on a simple insight: students need to first understand a field before they can navigate it, then build the skills and relationships to compete in it, and finally act on real opportunities with confidence. The current Singapore version is live; broader APAC expansion remains the longer-term direction.</p>
       <a href="https://inspire-sg.vercel.app" target="_blank" class="btn btn-primary" style="margin-top:8px;">Visit Inspire ↗</a>
     </div>
     <div class="pillars">
@@ -566,7 +662,7 @@
         <div class="pillar-letter">L</div>
         <div class="pillar-info">
           <strong>Learn</strong>
-          <span>Three-tier mentorship — peer, industry professional, and C-suite — plus AI-powered personalised roadmaps</span>
+          <span>Three-tier mentorship model — peer, industry professional, and C-suite — with personalised roadmaps planned as the platform develops</span>
         </div>
       </div>
       <div class="pillar">
